@@ -1,5 +1,7 @@
 package com.oaes.entity;
 
+import com.oaes.controller.HomeServlet;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -14,28 +16,19 @@ public class Student extends User{
     private int locked;
     @Column(nullable = false)
     private int triesLeft;
-    @Column(nullable = false)
     private int testStatus;
 
-    public Student(long uuid, long userID, String password, String email, String rollNo, College college, int locked, int triesLeft, int testStatus) {
+    public Student(long uuid, long userID, String password, String email, String rollNo, College college, int locked, int triesLeft) {
         super(uuid, userID, password, email);
         this.rollNo = rollNo;
         this.college = college;
         this.locked = locked;
         this.triesLeft = triesLeft;
-        this.testStatus = testStatus;
+        this.testStatus = 0;
     }
 
     public Student() {
 
-    }
-
-    public int getTestStatus() {
-        return testStatus;
-    }
-
-    public void setTestStatus(int testStatus) {
-        this.testStatus = testStatus;
     }
 
     public String getRollNo() {
@@ -70,10 +63,22 @@ public class Student extends User{
         this.triesLeft = triesLeft;
     }
 
+    public int getTestStatus() {
+        return testStatus;
+    }
+
+    public void setTestStatus() {
+        this.testStatus = 1;
+    }
+
+    public void setTestStatus(int testStatus) {
+        this.testStatus = testStatus;
+    }
+
     @Override
     public String toString() {
         return "Student{" +
-                ", rollNo='" + rollNo + '\'' +
+                "rollNo='" + rollNo + '\'' +
                 ", college=" + college +
                 ", locked=" + locked +
                 ", triesLeft=" + triesLeft +

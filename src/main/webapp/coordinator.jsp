@@ -17,7 +17,9 @@
 <body>
     <div align="center">
         <h1>Welcome Coordinator</h1>
-        <button type="submit" class="btn btn-primary">Start Test</button>
+        <form action="coordinator" method="post">
+            <button type="submit" class="btn btn-primary" id="submit">Start Test</button>
+        </form>
     </div>
 </body>
 </html>

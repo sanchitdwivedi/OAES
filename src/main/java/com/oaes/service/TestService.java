@@ -1,5 +1,6 @@
 package com.oaes.service;
 
+import com.oaes.AuthenticationManager;
 import com.oaes.entity.Student;
 
 import java.util.ArrayList;
@@ -8,10 +9,20 @@ import java.util.List;
 public class TestService {
     private boolean testStarted;
     private List<Student> subscribers;
+    private static TestService instance;
 
-    public TestService(){
+    private TestService(){
         this.testStarted = false;
         this.subscribers = new ArrayList<>();
+    }
+
+    public static TestService getInstance(){
+        if (instance == null){
+            synchronized(TestService.class){
+                if (instance == null) instance = new TestService();
+            }
+        }
+        return instance;
     }
 
     public void subscribe(Student student){
@@ -28,7 +39,7 @@ public class TestService {
     }
 
     public void notifySubscribers(){
-        for(Student s: subscribers) s.setTestStatus(1);
+        for(Student s: subscribers) s.setTestStatus();
     }
 
     public void startTest(){
